@@ -71,7 +71,13 @@ pnpm dev                # http://localhost:8080 → /fires/eaton
 
 Local dev runs on PGlite; nothing else to set up. Without an LLM key the map and every action still work, and the sidebar offers to connect one.
 
-Checks: `pnpm typecheck`, `pnpm test` (170 tests: fire tools, response guard, SAM route, map projection), `pnpm agent-native:doctor`.
+Checks: `pnpm typecheck`, `pnpm test` (207 tests: fire tools, response guard, eval scorer, SAM route, map projection), `pnpm agent-native:doctor`.
+
+Evals: `evals/fire-analyst.eval.ts` asks the live agent 33 questions whose answers were computed straight from the fire data (street arrival times, burned acres, spread rate, gusts, humidity, damage counts, the withheld start time, an odds ratio). Each must match the truth (±30 min, ±5%), call the right action and tag its figures. The scorer reproduces the verdicts recorded with the questions. `evals/production-context.ts` runs them through the same prompt, tools and guard as the chat:
+
+```bash
+DATABASE_URL=pglite:memory pnpm eval --owner-email you@example.com --org-id local
+```
 
 Drive the map from a terminal the way the agent does:
 
