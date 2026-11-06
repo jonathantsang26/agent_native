@@ -88,14 +88,29 @@ curl "http://localhost:8080/_agent-native/actions/get-street-timeline?name=Lake%
 
 ## Deploy
 
-The framework keeps chat threads and application state in Postgres, so a deployment needs a hosted database (Neon's free tier works):
+Deploy to Vercel from the GitHub repo, so Vercel runs the build itself. The output is about 180 MB of static files (map data, the ONNX runtimes and the detector model) plus a 54 MB function, which is more than Hobby's 100 MB cap on CLI uploads.
 
-```bash
-DATABASE_URL=… BETTER_AUTH_SECRET=… ANTHROPIC_API_KEY=… pnpm migrate:production
-NITRO_PRESET=vercel pnpm build    # or netlify, node
-```
+`vercel.json` sets the install and build commands. `pnpm vercel-build` builds for Vercel and then, when `DATABASE_URL` is set, applies the framework's migrations and the app's own (the briefs table). Serverless functions don't create tables at startup, so the migrations must run here.
 
-Set the same variables on the host, plus `MODEL_API_KEY` and an Upstash store (`KV_REST_API_URL`/`KV_REST_API_TOKEN`) for SAM outlines. The map's static data is about 100 MB under `public/data`; deploy from Git (or a host without a CLI upload cap) rather than a CLI upload on a free tier.
+1. In Vercel, import the repository as a new project. Leave the framework preset at Other.
+2. Add Postgres. Under Storage, add Neon, which sets `DATABASE_URL`; or paste a pooled Neon URL as `DATABASE_URL` yourself.
+3. Set the production environment variables:
+
+   | Variable | Purpose |
+   | --- | --- |
+   | `DATABASE_URL` | Postgres for chat threads, application state and briefs |
+   | `BETTER_AUTH_SECRET` | Signs sessions. Generate it with `openssl rand -hex 32` and never change it, or everyone is signed out |
+   | `CRON_SECRET` | Authenticates Vercel's call to the framework's job sweep. Generate it with `openssl rand -hex 32` |
+   | `ANTHROPIC_API_KEY` | Model for every signed-in user who hasn't connected their own. Billed to you, so set a spend limit on the key |
+   | `MODEL_API_KEY`, `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Optional. Live SAM outlines. The daily spend cap is kept in Upstash (`KV_*`), so without it outlines stay paused |
+
+4. Deploy. Production builds from `main`. A branch push gets a preview URL.
+
+Visitors sign up with an email and password. With no email provider configured, the framework doesn't require verification. Never set `AUTH_DISABLED` on a public deployment.
+
+A Builder.io connection made in the app covers only your account and your organization's members. Other visitors' agents run on `ANTHROPIC_API_KEY` unless they connect a provider themselves. In production the framework doesn't accept a deployment-wide Builder.io key.
+
+Vercel Hobby allows cron jobs at most once a day, so the build schedules the framework's job sweep for 09:00 UTC. The app has no scheduled automations. On Pro, set `AGENT_NATIVE_VERCEL_CRON_SCHEDULE="* * * * *"` for a sweep every minute.
 
 ## Data
 

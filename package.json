@@ -9,6 +9,7 @@
     "fire-data": "tsx scripts/build-fire-data.ts",
     "dev": "agent-native dev --open",
     "build": "agent-native build",
+    "vercel-build": "NITRO_PRESET=vercel AGENT_NATIVE_VERCEL_CRON_SCHEDULE=\"${AGENT_NATIVE_VERCEL_CRON_SCHEDULE:-0 9 * * *}\" agent-native build && if [ -n \"$DATABASE_URL\" ]; then pnpm migrate:production; fi",
     "start": "agent-native start",
     "typecheck": "agent-native typecheck",
     "action": "agent-native action",
