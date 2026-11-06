@@ -5,35 +5,60 @@
 
 @source "./**/*.{ts,tsx}";
 
+/* Incident map tokens. Names that would collide with the chat UI's tokens
+   (card, muted, accent) carry an `se-` prefix. */
+@theme {
+  --color-chrome: var(--bg-chrome);
+  --color-se-card: var(--bg-card);
+  --color-rail: var(--bg-rail);
+  --color-section: var(--bg-section-head);
+  --color-tabgroup: var(--bg-tabgroup);
+  --color-tabactive: var(--bg-tab-active);
+  --color-selected: var(--bg-row-selected);
+  --color-ink: var(--text);
+  --color-se-muted: var(--text-muted);
+  --color-hairline: var(--hairline);
+  --color-se-accent: var(--se-accent);
+  --color-live: var(--live);
+  --color-badge: var(--badge);
+  --color-ok: var(--ok);
+  --color-okbg: var(--chip-ok-bg);
+  --color-btndark: var(--btn-dark);
+  --color-hud: var(--hud-bg);
+  --text-2xs: 10px;
+  --text-2xs--line-height: 14px;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+}
+
 :root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 10%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
-  --primary: 0 0% 15%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 95%;
-  --secondary-foreground: 0 0% 15%;
-  --muted: 0 0% 95%;
-  --muted-foreground: 0 0% 43%;
-  --accent: 0 0% 95%;
-  --accent-foreground: 0 0% 15%;
+  --background: 45 30% 94%;
+  --foreground: 44 22% 13%;
+  --card: 45 30% 96%;
+  --card-foreground: 44 22% 13%;
+  --popover: 45 30% 96%;
+  --popover-foreground: 44 22% 13%;
+  --primary: 40 15% 16%;
+  --primary-foreground: 45 36% 95%;
+  --secondary: 45 21% 86%;
+  --secondary-foreground: 44 22% 13%;
+  --muted: 45 21% 88%;
+  --muted-foreground: 42 9% 42%;
+  --accent: 45 21% 86%;
+  --accent-foreground: 44 22% 13%;
   --destructive: 0 91% 71%;
   --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 0 0% 40%;
+  --border: 45 15% 80%;
+  --input: 45 15% 80%;
+  --ring: 11 60% 56%;
   --radius: 0.5rem;
-  --sidebar-background: 0 0% 97%;
-  --sidebar-foreground: 0 0% 43%;
-  --sidebar-primary: 0 0% 15%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 0% 95%;
-  --sidebar-accent-foreground: 0 0% 15%;
-  --sidebar-border: 0 0% 90%;
-  --sidebar-ring: 0 0% 40%;
+  --sidebar-background: 45 22% 89%;
+  --sidebar-foreground: 42 9% 42%;
+  --sidebar-primary: 40 15% 16%;
+  --sidebar-primary-foreground: 45 36% 95%;
+  --sidebar-accent: 45 21% 84%;
+  --sidebar-accent-foreground: 44 22% 13%;
+  --sidebar-border: 45 15% 80%;
+  --sidebar-ring: 11 60% 56%;
   --chat-sidebar-width: 17.5rem;
   --chat-sidebar-content-inset: 0.5rem;
   --chat-sidebar-row-padding: 0.75rem;
@@ -280,4 +305,67 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.34);
+}
+
+/* Incident map palette, sampled from the field-map look. */
+:root {
+  --bg-chrome: #dedbcc;
+  --bg-card: #dedace;
+  --bg-rail: #d1c8b9;
+  --bg-section-head: #d3ccbc;
+  --bg-tabgroup: #d1cebf;
+  --bg-tab-active: #f2efe6;
+  --bg-row-selected: #dccabc;
+  --text: #29251a;
+  --text-muted: #857e6e;
+  --hairline: rgba(41, 37, 26, 0.12);
+  --se-accent: #d1654b;
+  --live: #b53536;
+  --badge: #d2492f;
+  --ok: #678352;
+  --chip-ok-bg: #dce3cf;
+  --btn-dark: #2e2a22;
+  --hud-bg: rgba(39, 35, 26, 0.92);
+
+  --chart-area-fill: rgba(211, 164, 136, 0.6);
+  --chart-area-stroke: #c0563a;
+  --chart-rate: #b8322e;
+  --chart-elev-fill: #b3b7a0;
+  --chart-elev-stroke: #4e5a44;
+}
+
+/* The map UI runs on a denser type scale than the chat UI. */
+.sentinel-root {
+  --text-xs: 11px;
+  --text-xs--line-height: 15px;
+  --text-sm: 12px;
+  --text-sm--line-height: 16px;
+  --text-base: 13px;
+  --text-base--line-height: 18px;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-chrome);
+  color: var(--text);
+  font-family: "Inter Variable", Inter, system-ui, sans-serif;
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Thin range input used by the layer opacity sliders. */
+.sentinel-root input[type="range"].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  background: var(--text);
+  border-radius: 1px;
+}
+.sentinel-root input[type="range"].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text);
+}
+.sentinel-root input[type="range"].slider:disabled {
+  opacity: 0.35;
 }

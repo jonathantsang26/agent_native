@@ -1,0 +1,380 @@
+{
+  "map": {
+    "lon": -118.094686,
+    "lat": 34.195745,
+    "t": "2025-01-08T01:09:51Z",
+    "k": 0.424,
+    "lb_max": 1.0
+  },
+  "lb_selection": [
+    {
+      "lb_max": 1.0,
+      "loss_h": 2.0218,
+      "k": 0.424
+    },
+    {
+      "lb_max": 1.25,
+      "loss_h": 2.1071,
+      "k": 1.2
+    },
+    {
+      "lb_max": 1.5,
+      "loss_h": 2.2846,
+      "k": 1.667
+    },
+    {
+      "lb_max": 2.0,
+      "loss_h": 2.6429,
+      "k": 3.333
+    },
+    {
+      "lb_max": 3.0,
+      "loss_h": 2.9758,
+      "k": 6.667
+    },
+    {
+      "lb_max": 8.0,
+      "loss_h": 3.6881,
+      "k": 76.8
+    }
+  ],
+  "r90_m": 1380.7,
+  "t90": [
+    "2025-01-07T19:47:24Z",
+    "2025-01-08T06:23:48Z"
+  ],
+  "timing": {
+    "identifiable": false,
+    "reasons": [
+      "90% start-time interval is 10.6 h wide (limit 6 h)"
+    ],
+    "interval90_width_h": 10.61
+  },
+  "uncertainty_calibrated": true,
+  "region90": {
+    "type": "MultiPolygon",
+    "coordinates": [
+      [
+        [
+          [
+            -118.10550255932203,
+            34.19446715736041
+          ],
+          [
+            -118.11168338358608,
+            34.19446715736041
+          ],
+          [
+            -118.11168338358608,
+            34.19531897461929
+          ],
+          [
+            -118.11374365834077,
+            34.19531897461929
+          ],
+          [
+            -118.11374365834077,
+            34.196170791878174
+          ],
+          [
+            -118.11168338358608,
+            34.196170791878174
+          ],
+          [
+            -118.11168338358608,
+            34.19787442639594
+          ],
+          [
+            -118.10756283407672,
+            34.19787442639594
+          ],
+          [
+            -118.10756283407672,
+            34.19957806091371
+          ],
+          [
+            -118.10138200981267,
+            34.19957806091371
+          ],
+          [
+            -118.10138200981267,
+            34.20128169543147
+          ],
+          [
+            -118.09932173505798,
+            34.20128169543147
+          ],
+          [
+            -118.09932173505798,
+            34.202985329949236
+          ],
+          [
+            -118.09417104817128,
+            34.202985329949236
+          ],
+          [
+            -118.09417104817128,
+            34.20213351269035
+          ],
+          [
+            -118.09314091079393,
+            34.20213351269035
+          ],
+          [
+            -118.09314091079393,
+            34.19957806091371
+          ],
+          [
+            -118.09520118554862,
+            34.19957806091371
+          ],
+          [
+            -118.09520118554862,
+            34.19787442639594
+          ],
+          [
+            -118.0921107734166,
+            34.19787442639594
+          ],
+          [
+            -118.09108063603925,
+            34.19446715736041
+          ],
+          [
+            -118.08799022390721,
+            34.19276352284264
+          ],
+          [
+            -118.08696008652987,
+            34.19105988832487
+          ],
+          [
+            -118.08489981177519,
+            34.19105988832487
+          ],
+          [
+            -118.08489981177519,
+            34.18509716751269
+          ],
+          [
+            -118.09005049866191,
+            34.18509716751269
+          ],
+          [
+            -118.09005049866191,
+            34.18339353299493
+          ],
+          [
+            -118.09108063603925,
+            34.18339353299493
+          ],
+          [
+            -118.0921107734166,
+            34.18168989847716
+          ],
+          [
+            -118.0972614603033,
+            34.18168989847716
+          ],
+          [
+            -118.0972614603033,
+            34.18254171573604
+          ],
+          [
+            -118.09932173505798,
+            34.18339353299493
+          ],
+          [
+            -118.09932173505798,
+            34.18509716751269
+          ],
+          [
+            -118.10138200981267,
+            34.18594898477157
+          ],
+          [
+            -118.10138200981267,
+            34.18850443654822
+          ],
+          [
+            -118.10035187243533,
+            34.18850443654822
+          ],
+          [
+            -118.09932173505798,
+            34.191911705583756
+          ],
+          [
+            -118.10138200981267,
+            34.191911705583756
+          ],
+          [
+            -118.10138200981267,
+            34.19276352284264
+          ],
+          [
+            -118.10344228456735,
+            34.19276352284264
+          ],
+          [
+            -118.10344228456735,
+            34.19361534010152
+          ],
+          [
+            -118.10550255932203,
+            34.19361534010152
+          ],
+          [
+            -118.10550255932203,
+            34.19446715736041
+          ]
+        ]
+      ],
+      [
+        [
+          [
+            -118.10550255932203,
+            34.20128169543147
+          ],
+          [
+            -118.10756283407672,
+            34.20128169543147
+          ],
+          [
+            -118.10756283407672,
+            34.202985329949236
+          ],
+          [
+            -118.10550255932203,
+            34.20213351269035
+          ],
+          [
+            -118.10550255932203,
+            34.20128169543147
+          ]
+        ]
+      ]
+    ]
+  },
+  "region90_cells": 325,
+  "region90_km2": 2.92,
+  "loss_h": 2.022,
+  "candidates_evaluated": 34248,
+  "observations_used": 6,
+  "first_observation": "2025-01-08T07:06:14Z",
+  "perimeters_total": 10,
+  "fit_horizon_h": 48,
+  "wind": "4\u00d76 HRRR points",
+  "modeled_vs_observed_iou": [
+    0.391,
+    0.436,
+    0.471,
+    0.439,
+    0.48,
+    0.452
+  ],
+  "calibration": {
+    "tau_h": 0.3,
+    "target": 0.9,
+    "reached_on_calibration_half": true,
+    "test_start_time_shown": {
+      "cases": 0,
+      "of": 15,
+      "median_time_err_min": null,
+      "max_time_err_min": null,
+      "interval_contains_truth": null
+    },
+    "calibration_cases": 15,
+    "test_cases": 15,
+    "test_coverage": {
+      "distance": 0.87,
+      "time": 0.93
+    },
+    "median_test_r90_m": 1717.3,
+    "median_test_t90_width_h": 10.31
+  },
+  "holdout": {
+    "held_out": [
+      {
+        "t": "2025-01-08T07:06:14Z",
+        "observed_cells": 571,
+        "predicted_cells": 168,
+        "iou": 0.232
+      },
+      {
+        "t": "2025-01-08T07:12:13Z",
+        "observed_cells": 1077,
+        "predicted_cells": 191,
+        "iou": 0.15
+      }
+    ],
+    "errors": {
+      "backtrace_distance_m": 2503.5,
+      "baseline_distance_m": 2460.5,
+      "backtrace_time_error_min": 139.6,
+      "baseline_time_error_min": -1854.2,
+      "reference_within_r90": false,
+      "reference_outside_first_fit_footprint_m": 1141.8,
+      "reference_within_t90": true
+    },
+    "uncertainty_calibrated": true
+  },
+  "reference_outside_first_footprint_m": 1771.5,
+  "synthetic_summary": {
+    "n": 30,
+    "distance_m": {
+      "backtrace": {
+        "median": 588.1,
+        "p90": 1578.1
+      },
+      "baseline_first_footprint_centroid": {
+        "median": 449.4,
+        "p90": 3144.4
+      }
+    },
+    "start_time_error_min": {
+      "backtrace": {
+        "median": 78.4,
+        "p90": 495.8
+      },
+      "baseline_area_backcast": {
+        "median": 1295.2,
+        "p90": 7791.7
+      }
+    },
+    "backtrace_beats_baseline": {
+      "distance": 0.57,
+      "time": 0.93
+    },
+    "truth_in_search_domain": 1.0
+  },
+  "synthetic_summary_holdout": {
+    "n": 30,
+    "distance_m": {
+      "backtrace": {
+        "median": 924.0,
+        "p90": 2225.3
+      },
+      "baseline_first_footprint_centroid": {
+        "median": 1406.3,
+        "p90": 4254.3
+      }
+    },
+    "start_time_error_min": {
+      "backtrace": {
+        "median": 186.2,
+        "p90": 700.2
+      },
+      "baseline_area_backcast": {
+        "median": 3132.0,
+        "p90": 47287.3
+      }
+    },
+    "backtrace_beats_baseline": {
+      "distance": 0.67,
+      "time": 0.97
+    },
+    "truth_in_search_domain": 1.0
+  },
+  "model_card": "Elliptical rate-of-spread model with per-fuel base rates (ESA WorldCover classes), power-law wind and tan\u00b2-slope terms, HRRR 3 km wind field interpolated per cell; no spotting, crown fire or suppression. Relative posterior over the stage-1 grid (uniform over lattice cells, log-uniform over lag and k), tau = 0.3 h (calibrated on this fire's synthetic cases)."
+}

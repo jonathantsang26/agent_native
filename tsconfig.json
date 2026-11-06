@@ -2,6 +2,11 @@
   "extends": "@agent-native/core/tsconfig.base.json",
   "compilerOptions": {
     "ignoreDeprecations": "6.0",
+    // The incident map code indexes typed arrays and rasters heavily; these two
+    // checks would add a guard to nearly every pixel read.
+    "noUncheckedIndexedAccess": false,
+    "exactOptionalPropertyTypes": false,
+    "resolveJsonModule": true,
     "rootDirs": [
       ".",
       "./.react-router/types"
@@ -23,6 +28,7 @@
     "server/**/*",
     "shared/**/*",
     "scripts/**/*",
+    "evals/**/*",
     "vite.config.ts",
     "react-router.config.ts",
     ".react-router/types/**/*",

@@ -44,9 +44,15 @@ interface LayoutProps {
 
 const SIDEBAR_COLLAPSE_KEY = "chat.sidebar.collapsed";
 
+/** The incident map brings its own header and fills the window. */
+function isFirePathname(pathname: string): boolean {
+  return pathname.startsWith("/fires/");
+}
+
 function routeOwnsToolbar(pathname: string): boolean {
   return (
     pathname === HOME_PATH ||
+    isFirePathname(pathname) ||
     isChatPathname(pathname) ||
     pathname === "/database" ||
     pathname.startsWith("/extensions")
@@ -92,6 +98,7 @@ function LayoutShell({ children }: LayoutProps) {
   // Settings brings its own navigation, header, and agent toggle, so it
   // renders full width.
   const settingsOwnsChrome = isSettingsPathname(location.pathname);
+  const firePage = isFirePathname(location.pathname);
   const chatHomeHandoffActive = useAgentChatHomeHandoff({
     storageKey: "chat",
     activePath: location.pathname,
@@ -153,7 +160,7 @@ function LayoutShell({ children }: LayoutProps) {
           title={pageTitle ?? APP_TITLE}
           actions={pageActions}
         />
-      ) : ownsToolbar ? (
+      ) : firePage ? null : ownsToolbar ? (
         <MobileAppBar
           className="md:hidden"
           onOpenNavigation={openMobileSidebar}
@@ -163,7 +170,9 @@ function LayoutShell({ children }: LayoutProps) {
           <Header onOpenMobileSidebar={openMobileSidebar} />
         </Suspense>
       )}
-      <main className="agent-native-app-main min-w-0 flex-1 overflow-y-auto overscroll-contain">
+      <main
+        className={`agent-native-app-main min-w-0 flex-1 overscroll-contain ${firePage ? "overflow-hidden" : "overflow-y-auto"}`}
+      >
         {children}
       </main>
     </div>
@@ -172,7 +181,7 @@ function LayoutShell({ children }: LayoutProps) {
   return (
     <HeaderActionsProvider>
       <div className="agent-layout-shell chat-layout-shell flex h-screen w-full overflow-hidden bg-background text-foreground">
-        {settingsOwnsChrome ? null : (
+        {settingsOwnsChrome || firePage ? null : (
           <div
             data-collapsed={sidebarCollapsed ? "true" : "false"}
             className="agent-layout-left-drawer hidden md:block"
