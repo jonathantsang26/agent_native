@@ -1,0 +1,185 @@
+{
+  "fire": "eaton",
+  "sources": [
+    {
+      "layer": "Back-trace forward run",
+      "source": "Sentinel Ember ignition back-trace",
+      "url": "",
+      "status": "MODELED",
+      "attribution": "",
+      "notes": "The spread model run forward from the estimate (modeled_arrival.png); IoU vs observed footprints [0.391, 0.436, 0.471, 0.439, 0.48, 0.452].",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Base texture",
+      "source": "Stylized from ESA WorldCover land cover + hillshade",
+      "url": "https://esa-worldcover.org/",
+      "status": "MODELED",
+      "attribution": "(c) ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+      "notes": "Fixed palette per land-cover class, lit by the terrain hillshade, with grain. Not imagery.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Burn severity (dNBR)",
+      "source": "JPL AVIRIS-3 provisional dNBR (2024-09-05 to 2025-01-16)",
+      "url": "https://popo.jpl.nasa.gov/pub/LA_Fires/dist/dnbr/",
+      "status": "REAL",
+      "attribution": "NASA JPL AVIRIS-3 (provisional product)",
+      "notes": "Provisional JPL AVIRIS-3 dNBR (866/2198 nm), reprojected bilinearly from 3.2 m UTM 11N to the ~16 m analysis grid. Valid data covers 56.4% of the final perimeter (7,945 of 14,092 acres); the rest is left as no data. Mean dNBR 0.427 inside vs 0.2818 outside (n=1229 edge cells; JPL clipped the product to a burn perimeter). Data edge best matches the perimeter edge at offset [0, 0] cells (71% of edge cells within 1 cell). severity.png: R = dNBR [-0.1, 1.0] -> 1..255 (0 = no data); G = class 0 none, 1 unburned <0.1, 2 low, 3 moderate-low, 4 moderate-high, 5 high >=0.66. GAP: AVIRIS-3 flight lines miss 44% of the final perimeter; no Sentinel-2 fallback is implemented yet.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Debris-flow models (this project)",
+      "source": "Sentinel Ember: M1 recalibrated and a random forest (monotone in rainfall), fitted on USGS's postfire debris-flow inventory",
+      "url": "https://www.sciencebase.gov/catalog/item/69612c8ed4be02298529c522",
+      "status": "MODELED",
+      "attribution": "USGS runoff-generated postfire debris-flow inventory (Graber et al. 2026), doi:10.5066/P1R9VXC4 (CC0); ERA5 and ERA5-Land via Open-Meteo.com (CC BY 4.0)",
+      "notes": "Applied to USGS's 956 segments: m1_p_* is M1's form refitted on 7,639 inventory records; rf_p_* is a random forest constrained to rise with rainfall, under a scenario of 2025-02-13 (37 days after ignition). Spearman vs USGS at 24 mm/h: m1 0.881, rf 0.472. Compared with USGS's assessment; there are no observed 2025 outcomes to score them against.",
+      "retrieved": "2026-10-31"
+    },
+    {
+      "layer": "Debris-flow segments (USGS)",
+      "source": "USGS Eaton 2025-01-08 v1.0 postfire debris-flow hazard assessment (PWFDF collection)",
+      "url": "https://www.sciencebase.gov/catalog/item/6838d149d4be025925747189",
+      "status": "MODELED",
+      "attribution": "King, J.M., Kostelnik, J., Kean, J.W., Barnhart, K.R., Graber, A.P., Rengers, F.K., and Thomas, M.A., 2026, Post-Wildfire Debris-Flow Hazard Assessment (PWFDF) Collection: U.S. Geological Survey data release, https://doi.org/10.5066/P14EWYME. CC0 1.0 Universal (public domain).",
+      "notes": "956 stream segments with M1's inputs (T, F, S) and USGS's M1 likelihoods and combined hazard classes at design storms I15 = 16\u201340 mm/h, made with wildcat v1.1.0. A model output, not observations. T and F come from the dNBR and burn severity in USGS's assessment inputs, not this project's AVIRIS-3 dNBR layer.",
+      "retrieved": "2026-10-31"
+    },
+    {
+      "layer": "Final perimeter",
+      "source": "CAL FIRE 2025 California Fire Perimeters",
+      "url": "https://services1.arcgis.com/jUJYIo9tSA7EHvfZ/arcgis/rest/services/2025_California_Fire_Perimeters_View/FeatureServer/0",
+      "status": "REAL",
+      "attribution": "",
+      "notes": "Final perimeter and official acres; used for the AOI and to validate Fire Area(t).",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Fire danger (daily)",
+      "source": "gridMET (Abatzoglou 2013) ERC, BI, 100-h and 1000-h fuel moisture",
+      "url": "http://thredds.northwestknowledge.net:8080/thredds/dodsC/MET/erc/erc_2025.nc",
+      "status": "REAL",
+      "attribution": "Abatzoglou, J.T. (2013), Int. J. Climatology, doi:10.1002/joc.3413",
+      "notes": "Nearest 4 km cell -118.1000, 34.1917; days end ~07 UTC (midnight MST). erc_3x3 is the min/max over the surrounding 3\u00d73 cells. QC-flagged days (kept as published): 2025-01-07 (erc: isolated drop vs adjacent days (as published); bi: isolated drop vs adjacent days (as published))",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Fire progression (arrival time)",
+      "source": "Interpolated from timed NIFC perimeters",
+      "url": "",
+      "status": "MODELED",
+      "attribution": "",
+      "notes": "Observed only at the 10 perimeter times; interpolated by distance between them; first interval seeded by CAL FIRE official start; the reported location lies outside the first mapped footprint, so the seed is its nearest cell, 1,743 m away; 2506 cells only in the final perimeter; 0 hotspot refinements.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "House-level exposure",
+      "source": "CAL FIRE DINS joined with arrival, weather and land cover",
+      "url": "",
+      "status": "MODELED",
+      "attribution": "",
+      "notes": "11150 exposed residences; Mantel\u2013Haenszel ORs across 6 exposure strata; logistic regression on 5837 complete cases.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Ignition probability",
+      "source": "Sentinel Ember ignition back-trace",
+      "url": "",
+      "status": "MODELED",
+      "attribution": "",
+      "notes": "Back-trace over 34,248 candidates; 90% radius 1381 m.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Key events",
+      "source": "Derived from series, perimeters, spine, weather and CAL FIRE",
+      "url": "",
+      "status": "MODELED",
+      "attribution": "",
+      "notes": "reported_start, peak_gust, ridge_crossing, rapid_growth, spot_fire, containment",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Land cover / fuels",
+      "source": "ESA WorldCover 2021 v200 (10 m)",
+      "url": "https://esa-worldcover.org/",
+      "status": "REAL",
+      "attribution": "(c) ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+      "notes": "Stands in for LANDFIRE LF2024 FBFM40/EVT, whose LFPS job needs an emailed request. WorldCover is land cover, not a fuel model: its 11 classes are grouped into 8 coarse fuel classes with no fuel load or bed depth. Imagery is from 2021, about 3.5 years before the fire. Read as a window of ESA_WorldCover_10m_2021_v200_N33W120_Map.tif over HTTP range requests and mode-resampled from 10 m to the ~16 m analysis grid. Limitation: its tree-cover class (>10% tree canopy) likely includes dense, tall chaparral and oak woodland here.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Official start (reference)",
+      "source": "CAL FIRE incidents API",
+      "url": "https://www.fire.ca.gov/incidents/2025/1/7/eaton-fire/",
+      "status": "REAL",
+      "attribution": "",
+      "notes": "Official start time and reported incident location (not an investigated origin). Seeds the first arrival interval; used only as an evaluation reference by the back-trace.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Perimeters (time series)",
+      "source": "NIFC Operational Data Archive 2025",
+      "url": "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/Operational_Data_Archive_2025/FeatureServer/6",
+      "status": "REAL",
+      "attribution": "National Interagency Fire Center (NIFC)",
+      "notes": "10 observations kept from 45 archive versions, 2025-01-08T07:06:14Z to 2025-01-16T05:16:43Z (8 inside the replay window). Time = PolygonDateTime, else DateCurrent; 4 versions carried a stale PolygonDateTime (set by an earlier version with a different polygon) and use DateCurrent. Dropped 5 InFORM placeholder versions (single 3-vertex triangles sized to the reported acreage, not mapped perimeters): 381 at 2025-01-08T06:14:32Z, 0.1 ac; 382 at 2025-01-08T06:18:30Z, 399.9 ac; 385 at 2025-01-08T06:36:15Z, 399.9 ac; 388 at 2025-01-08T06:36:15Z, 399.9 ac; 405 at 2025-01-08T13:19:59Z, 2,226.6 ac. First mapped perimeter: 2025-01-08T07:06:14Z (version 389, 1,276 ac, 4.8 h after the reported start 2025-01-08T02:18:00Z). Dropped: 30 re-saves or duplicates (under 1% different), 0 stub(s) under 5 ac. Each feature is the cumulative union of observations so far, clipped to the final extent (version 98888, 14,021 ac). Unclipped, the union ends at 15,227 ac (+8.3% vs official); most of the excess is early mapping outside the final extent: 484 961 ac, 390 218 ac, 628 105 ac. Final cumulative 13,960 ac vs official 14,056 ac (-0.7%). Area check: the CAL FIRE final perimeter measures 14,056.4 ac in this frame vs its GIS_ACRES 14,056.3 (+0.00%). 38 candidate spot components (< 50 ac, > 10 m from the main footprint) in spots.geojson, timed by the observation that first maps them, not by when they ignited.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Roads, peaks & places",
+      "source": "OpenStreetMap via the Overpass API",
+      "url": "https://www.openstreetmap.org/copyright",
+      "status": "REAL",
+      "attribution": "(c) OpenStreetMap contributors (ODbL)",
+      "notes": "4,957 road/trail segments clipped to the AOI (simplified at 1e-05\u00b0), 18 peaks, 13 places, 18 water bodies; 1,426 named streets in gazetteer.json. Current OSM (data as of 2026-10-30T10:11:02Z), not a pre-fire snapshot.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Structures (damage inspection)",
+      "source": "CAL FIRE DINS (Damage Inspection), POSTFIRE_MASTER_DATA_SHARE",
+      "url": "https://services1.arcgis.com/jUJYIo9tSA7EHvfZ/arcgis/rest/services/POSTFIRE_MASTER_DATA_SHARE/FeatureServer/0",
+      "status": "REAL",
+      "attribution": "",
+      "notes": "address, parcel, owner and year-built fields deliberately dropped. 18,428 of 18,428 inspected structures kept (0 outside the AOI bbox, 0 without a location); only damage, construction and defensible-space fields are requested from the server.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Terrain",
+      "source": "AWS Terrain Tiles (terrarium)",
+      "url": "https://registry.opendata.aws/terrain-tiles/",
+      "status": "REAL",
+      "attribution": "Terrain Tiles on AWS Open Data; elevation from USGS 3DEP, SRTM and other public sources",
+      "notes": "z13, resampled to 16 m lon/lat grid",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Weather (hourly)",
+      "source": "NOAA HRRR (3 km) via the Open-Meteo historical forecast archive",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "status": "REAL",
+      "attribution": "Open-Meteo.com (CC BY 4.0); NOAA NCEP High-Resolution Rapid Refresh",
+      "notes": "A weather model's analysis and short-range forecast, not observations. At BUR: hourly wind r = 0.9 (ERA5 0.71), RH r = 0.84 (ERA5 0.59), peak gust 60.8 mph vs station 82.9 (ERA5 47.2). Window peak gust at the AOI center 73.4 mph, min RH 3.0%.",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Weather station",
+      "source": "IEM ASOS BUR BURBANK/GLENDALE",
+      "url": "https://mesonet.agron.iastate.edu/request/download.phtml",
+      "status": "REAL",
+      "attribution": "Iowa Environmental Mesonet, Iowa State University",
+      "notes": "25.0 km from the AOI center, 100% hourly coverage. vs HRRR at the AOI center: wind bias 6.4 mph, r=0.7; RH bias -0.9%, r=0.24; n=120 h. Skipped nearer stations: MWS (85% coverage), EMT (46% coverage)",
+      "retrieved": "2026-10-30"
+    },
+    {
+      "layer": "Wind field",
+      "source": "NOAA HRRR (3 km) via the Open-Meteo historical forecast archive",
+      "url": "https://open-meteo.com/en/docs/historical-forecast-api",
+      "status": "REAL",
+      "attribution": "Open-Meteo.com (CC BY 4.0); NOAA NCEP High-Resolution Rapid Refresh",
+      "notes": "4\u00d76 points across the AOI (21 distinct series); peak gusts range 68.7\u201391.7 mph across points; drives the spread model, interpolated bilinearly per cell.",
+      "retrieved": "2026-10-30"
+    }
+  ]
+}

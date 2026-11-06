@@ -30,7 +30,7 @@ dist-ssr
 !.env.example
 .tmp/
 
-**/data/
+/data/
 data/pglite/
 data/uploads/
 data/settings.json
@@ -41,3 +41,6 @@ learnings.md
 .vercel/
 .agent-native/
 data/*.lock
+
+# Generated from node_modules/onnxruntime-web by vite.config.ts
+public/ort/

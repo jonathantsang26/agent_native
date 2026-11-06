@@ -1,1 +1,9 @@
-export { signInLandingLoader as loader } from "@agent-native/core/client/sign-in-landing";
+import { signInLandingLoader } from "@agent-native/core/client/sign-in-landing";
+import type { LoaderFunctionArgs } from "react-router";
+
+import { DEFAULT_FIRE, firePath } from "@/lib/fires";
+
+// `/` opens the incident map; sign-in (when enabled) resumes there.
+export function loader({ request }: LoaderFunctionArgs) {
+  return signInLandingLoader(firePath(DEFAULT_FIRE), request);
+}
