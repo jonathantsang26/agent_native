@@ -42,7 +42,9 @@ export default defineAction({
 
     const screen: Record<string, unknown> = {};
     if (navigation) screen.navigation = navigation;
-    if (map && navigation?.view === "incident") {
+    // A tab that left the map keeps its last map state, so trust it only while
+    // navigation says the map is open (or when there is no tab to ask, e.g. MCP).
+    if (map && (!navigation || navigation.view === "incident")) {
       screen.map = map;
       screen.at_replay_time = await atReplayTime(map);
     }
