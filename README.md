@@ -92,7 +92,7 @@ Deploy to Vercel from the GitHub repo, so Vercel runs the build itself. The outp
 
 `vercel.json` sets the install and build commands. `pnpm vercel-build` builds for Vercel and then, when `DATABASE_URL` is set, applies the framework's migrations and the app's own (the briefs table). Serverless functions don't create tables at startup, so the migrations must run here.
 
-1. In Vercel, import the repository as a new project. Leave the framework preset at Other.
+1. In Vercel, import the repository as a new project. Leave the framework preset at Other, and set Node.js to 24.x in the project settings.
 2. Add Postgres. Under Storage, add Neon, which sets `DATABASE_URL`; or paste a pooled Neon URL as `DATABASE_URL` yourself.
 3. Set the production environment variables:
 
@@ -104,7 +104,7 @@ Deploy to Vercel from the GitHub repo, so Vercel runs the build itself. The outp
    | `ANTHROPIC_API_KEY` | Model for every signed-in user who hasn't connected their own. Billed to you, so set a spend limit on the key |
    | `MODEL_API_KEY`, `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Optional. Live SAM outlines. The daily spend cap is kept in Upstash (`KV_*`), so without it outlines stay paused |
 
-4. Deploy. Production builds from `main`. A branch push gets a preview URL.
+4. Deploy. Production builds from `main`, and `vercel.json` must be on that branch. A push to any other branch gets a preview URL.
 
 Visitors sign up with an email and password. With no email provider configured, the framework doesn't require verification. Never set `AUTH_DISABLED` on a public deployment.
 
