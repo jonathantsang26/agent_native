@@ -18,6 +18,7 @@ export const EVIDENCE_ACTIONS = new Set([
   "get-ignition-estimate",
   "get-exposure-stats",
   "fire-growth-chart",
+  "list-briefs",
   "view-screen",
 ]);
 

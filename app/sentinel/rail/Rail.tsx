@@ -2,6 +2,7 @@ import type {FireData} from '../data/fire';
 import {DronesRail} from '../drones/DronesRail';
 import {LAYERS, RAIL_TABS, useUi, type LayerId} from '../state/ui';
 import {Analysis} from './analysis';
+import {BriefsPanel} from './briefs';
 import {IncidentOverview} from './overview';
 import {RiskRail} from './risk';
 import {SwarmPanel} from './swarm';
@@ -122,6 +123,7 @@ function IncidentRail({fire}: {fire: FireData}) {
         {sub === 'Analysis' && <Analysis fire={fire} />}
         {sub === 'Evidence' && <Evidence fire={fire} />}
         {sub === 'Swarm' && <SwarmPanel fire={fire} />}
+        {sub === 'Briefs' && <BriefsPanel fire={fire} />}
       </section>
       <IncidentOverview fire={fire} />
       <WeatherCard fire={fire} />

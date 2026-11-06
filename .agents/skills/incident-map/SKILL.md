@@ -22,12 +22,16 @@ The map and the agent share state through application state:
 | `time` | Replay time, UTC ISO-8601, clamped to the fire's window (`map.window`). |
 | `showLayers` / `hideLayers` | Layer ids below. |
 | `tab` | `incident` (replay), `drones` (footage and the live detector), `risk` (debris flows). |
-| `railTab` | `Layers`, `Analysis`, `Evidence`, `Swarm` (incident tab's right rail). |
+| `railTab` | `Layers`, `Analysis`, `Evidence`, `Swarm`, `Briefs` (incident tab's right rail). |
 | `viewMode` | `2d` or `3d`. |
 | `highlight: {lon, lat, label?}` | A labelled pin; `null` clears it. |
 | `playing` | Start or pause the replay (2 fire-hours per second at 1×). |
 
 Layers: `terrain`, `burnScar`, `fireSpread` (interpolated progression), `perimeters` (mapped), `ignition` (model estimate), `spine` (spread path), `wind`, `structures` (damage inspections), `roads`, `labels`, `debrisFlow`, `forecast` (+1 h spread forecast), `liveHits` (drone detections).
+
+## The picked spot
+
+Clicking bare terrain opens a menu that sends the spot to you, and `map.picked` holds it until the camera moves. "Here" and "this spot" mean `map.picked`; if it is null, fall back to the highlight or the camera center and say which you used.
 
 ## Switching fires
 

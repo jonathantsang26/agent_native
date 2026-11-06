@@ -13,6 +13,8 @@ Built on [Agent-Native](https://www.agent-native.com/docs/), Builder.io's framew
 | "How big was it at 4 AM, and what was the wind doing?" | Reads the replay time from your screen, calls `get-fire-state` and `get-weather`, cites `[source ids]` | Actions as agent tools, `<current-screen>` context |
 | "Show me where the damage was worst near Altadena" | `find-place` → `count-structures-near`, then `update-map` turns on structures, flies there and pins the point | Shared application state (`incident-map` / `map-command`) |
 | "Chart the fire's growth" | `fire-growth-chart` renders a chart inside the chat | Native data widgets in chat |
+| "Write a brief for 4 AM in Altadena" | Gathers the figures, saves a tagged report with `save-brief`, opens the Briefs panel and flies there | SQL via Drizzle, live sync, shared actions |
+| *Click any spot on the map* | "Ask the agent about this spot" sends the point and the replay time to the agent | `sendToAgentChat`, `picked` in the map state |
 | "Switch to the Palisades fire" | `navigate {view: "incident", fireId: "palisades"}` | Navigation state |
 | Anything with a number in it | A response guard checks every figure against this turn's action results and sends ungrounded answers back | `finalResponseGuard` |
 | Claude Desktop, Cursor, ChatGPT | The ten fire-data actions are listed for external agents on the OAuth-protected MCP server at `/mcp` (connect with `npx @agent-native/core@latest connect <app-url>`; not yet tried from a host) | MCP server, `connectorCatalog` |
@@ -39,6 +41,7 @@ The map itself is the original UI: deck.gl terrain, the replay timeline, the rig
 - `app/sentinel/agent/bridge.tsx` publishes the map's state (fire, replay time, tab, visible layers, camera, selection) and applies the agent's commands.
 - `server/lib/fire/` holds the fire tools. They read the precomputed layers, bundled into the server by `pnpm fire-data`, so they run on serverless hosts too.
 - `server/lib/fire/guard.ts` holds answers to figures the actions returned, and keeps cause speculation and street addresses out.
+- `server/db/` and `server/plugins/db.ts` hold the briefs table (Drizzle, additive migrations); the Briefs panel reads it with `useActionQuery` and refreshes when the agent writes.
 - `server/routes/api/sam.post.ts` outlines fire in live drone frames with SAM 3.1, under a daily spend cap.
 - `AGENTS.md` and `.agents/skills/{fire-analyst,incident-map}` are the agent's instructions.
 

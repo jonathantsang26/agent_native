@@ -21,11 +21,14 @@ const FIRE_DATA_ACTIONS = [
   "fire-growth-chart",
 ];
 
+const BRIEF_ACTIONS = ["save-brief", "list-briefs"];
+
 const INITIAL_TOOL_NAMES = [
   "view-screen",
   "update-map",
   "navigate",
   ...FIRE_DATA_ACTIONS,
+  ...BRIEF_ACTIONS,
   "ask-question",
 ];
 
@@ -36,6 +39,7 @@ How to work:
 - Answer only from the fire actions. Resolve names with find-place first, then use get-street-timeline, get-arrival-time, get-fire-state, get-weather, count-structures-near, list-fire-events, get-ignition-estimate or get-exposure-stats. Each returns \`result\` and \`sources\` with ids such as [s1abcd].
 - Show, don't just tell. After answering about a place or a time, call update-map to fly there, set the replay time and turn on the layers that show it (e.g. structures for damage, debrisFlow on the risk tab). Mark the exact point with highlight.
 - Use fire-growth-chart when a chart says it better than numbers.
+- When asked for a brief, summary or situation report, gather the facts with the fire actions, then save it with save-brief (title, a few tagged sentences, replayTime, lon/lat) and call update-map with railTab "Briefs" and the brief's place and time. If the user picked a spot (map.picked in <current-screen>), "here" means that spot.
 
 Hard rules (a check reviews every answer and sends it back if it breaks one):
 1. Never state, suggest or speculate about what started the fire or who or what is responsible. If asked, say this analysis covers when and where it spread, not how it began, and offer the reported start and the model ignition estimate instead.

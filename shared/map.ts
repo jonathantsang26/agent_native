@@ -24,7 +24,7 @@ export type MapLayerId = (typeof MAP_LAYER_IDS)[number];
 export const MAP_TABS = ["incident", "drones", "risk"] as const;
 export type MapTab = (typeof MAP_TABS)[number];
 
-export const RAIL_TABS = ["Layers", "Analysis", "Evidence", "Swarm"] as const;
+export const RAIL_TABS = ["Layers", "Analysis", "Evidence", "Swarm", "Briefs"] as const;
 export type RailTab = (typeof RAIL_TABS)[number];
 
 export type MapCamera = {
