@@ -29,6 +29,7 @@ import {useSwarmPart} from './swarm-layer';
 import {useRollout, useSwarmUi} from '../swarm/data';
 import {useForecastPart} from './forecast-layer';
 import {useLiveHitsPart} from './live-layer';
+import {SpotMenu} from '../agent/SpotMenu';
 import {Compass, HoverInspector, MapControls, MapNotes, SyntheticChip, type StageNote} from './overlays';
 
 const PITCH_3D = 58;
@@ -54,6 +55,7 @@ export function Stage({fire}: {fire: FireData}) {
   const setBearing = useUi(s => s.setBearing);
   const setCamera = useUi(s => s.setCamera);
   const setHover = useUi(s => s.setHover);
+  const setPin = useUi(s => s.setPin);
   const selectStructure = useUi(s => s.selectStructure);
   const risk = useUi(s => s.risk);
   const setRisk = useUi(s => s.setRisk);
@@ -387,6 +389,8 @@ export function Stage({fire}: {fire: FireData}) {
         viewState={viewState}
         onViewStateChange={({viewState: next}) => {
           const v = next as MapViewState;
+          // The spot menu sits at the click's screen position, so any camera move closes it.
+          if (useUi.getState().pin) setPin(null);
           setViewState(v);
           setBearing(v.bearing ?? 0);
           setCamera({lon: v.longitude, lat: v.latitude, zoom: v.zoom, pitch: v.pitch ?? 0, bearing: v.bearing ?? 0});
@@ -396,6 +400,11 @@ export function Stage({fire}: {fire: FireData}) {
         onHover={info => {
           const c = info.coordinate;
           setHover(c && info.layer?.id.startsWith('terrain') ? {x: info.x, y: info.y, lon: c[0], lat: c[1]} : null);
+        }}
+        onClick={info => {
+          // Layers with their own pick (structures, debris segments) handle the click first.
+          const c = info.coordinate;
+          setPin(c && info.layer?.id.startsWith('terrain') ? {lon: c[0], lat: c[1], x: info.x, y: info.y} : null);
         }}
         getCursor={({isDragging}) => (isDragging ? 'grabbing' : 'crosshair')}
       />
@@ -408,6 +417,7 @@ export function Stage({fire}: {fire: FireData}) {
       <MapNotes notes={notes} />
       <MapControls />
       <HoverInspector dem={dem} fire={fire} arrivalWindow={arrivalWindow} arrivalMeta={arrivalMeta} />
+      <SpotMenu fire={fire} />
     </div>
   );
 }

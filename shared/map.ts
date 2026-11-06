@@ -51,6 +51,8 @@ export type MapState = {
   visibleLayers: MapLayerId[];
   camera: MapCamera | null;
   highlight: { lon: number; lat: number; label?: string } | null;
+  /** The spot the user last clicked on the map ("here", "this spot"). */
+  picked: { lon: number; lat: number } | null;
   selectedStructure: number | null;
   risk: { model: string; i15: number; segment: number | null };
 };

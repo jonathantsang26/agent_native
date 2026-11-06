@@ -54,6 +54,7 @@ export function AgentMapBridge({ fire }: { fire: FireData }) {
       layers: s.layers,
       camera: s.camera,
       highlight: s.highlight,
+      pin: s.pin,
       selectedStructure: s.selectedStructure,
       risk: s.risk,
     })),
@@ -92,6 +93,7 @@ export function AgentMapBridge({ fire }: { fire: FireData }) {
           }
         : null,
       highlight: ui.highlight,
+      picked: ui.pin ? { lon: round(ui.pin.lon, 5), lat: round(ui.pin.lat, 5) } : null,
       selectedStructure: ui.selectedStructure,
       risk: ui.risk,
     };

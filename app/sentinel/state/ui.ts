@@ -49,6 +49,9 @@ export type Hover = {
   lat: number;
 } | null;
 
+/** A spot the user clicked on bare terrain, with where the click landed on screen. */
+export type Pin = {lon: number; lat: number; x: number; y: number} | null;
+
 /** A request for the stage to ease the camera somewhere; `seq` makes repeated requests distinct. */
 export type FlyTo = {lon: number; lat: number; zoom?: number; seq: number} | null;
 
@@ -66,6 +69,7 @@ type UiState = {
   bearing: number;
   layers: Record<LayerId, LayerDef>;
   hover: Hover;
+  pin: Pin;
   flyTo: FlyTo;
   highlight: Highlight;
   /** Structure id picked on the map (Analysis → Homes). */
@@ -79,6 +83,7 @@ type UiState = {
   setBearing: (bearing: number) => void;
   setLayer: (id: LayerId, patch: Partial<Pick<LayerDef, 'visible' | 'opacity'>>) => void;
   setHover: (hover: Hover) => void;
+  setPin: (pin: Pin) => void;
   requestFlyTo: (lon: number, lat: number, zoom?: number) => void;
   setHighlight: (highlight: Highlight) => void;
   selectStructure: (id: number | null) => void;
@@ -99,6 +104,7 @@ export const useUi = create<UiState>(set => ({
     LAYERS.map(l => [l.id, l.id === 'debrisFlow' && INITIAL_TAB === 'risk' ? {...l, visible: true} : l])
   ) as Record<LayerId, LayerDef>,
   hover: null,
+  pin: null,
   flyTo: null,
   highlight: null,
   selectedStructure: null,
@@ -110,6 +116,7 @@ export const useUi = create<UiState>(set => ({
   setBearing: bearing => set({bearing}),
   setLayer: (id, patch) => set(s => ({layers: {...s.layers, [id]: {...s.layers[id], ...patch}}})),
   setHover: hover => set({hover}),
+  setPin: pin => set({pin}),
   requestFlyTo: (lon, lat, zoom) => set(s => ({flyTo: {lon, lat, zoom, seq: (s.flyTo?.seq ?? 0) + 1}})),
   setHighlight: highlight => set({highlight}),
   // Picking a structure on the map opens Analysis → Homes, where its record is shown.
