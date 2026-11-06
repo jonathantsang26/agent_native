@@ -49,7 +49,7 @@ function useSize<T extends HTMLElement>() {
   return [ref, size] as const;
 }
 
-/** A per-second step series with the playhead; past solid, future faded (DESIGN.md §6.2). */
+/** A per-second step series with the playhead; past solid, future faded. */
 export function SeriesPlot({values, max, color, time, unit, id = unit}: {values: number[]; max: number; color: string; time: number; unit: string; id?: string}) {
   const [ref, {w, h}] = useSize<HTMLDivElement>();
   const L = 30;

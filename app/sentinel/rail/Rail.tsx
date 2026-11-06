@@ -129,7 +129,7 @@ function IncidentRail({fire}: {fire: FireData}) {
   );
 }
 
-/** DESIGN.md §5: 308px rail, full height below the header. */
+/** 308px rail, full height below the header. */
 export function Rail({fire}: {fire: FireData}) {
   const tab = useUi(s => s.tab);
   return (

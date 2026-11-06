@@ -4,8 +4,8 @@ import type {FireData} from '../data/fire';
 import {loadFireJson} from '../data/files';
 
 /**
- * The drone-swarm simulation's outputs (pipeline/sim/run.py → public/data/<fire>/swarm/): simulated
- * drones flown over the replayed fire (docs/SWARM.md). Rollouts are precomputed and replayed as static
+ * The drone-swarm simulation's outputs (public/data/<fire>/swarm/): simulated drones flown over
+ * the replayed fire. Rollouts are precomputed and replayed as static
  * files; the app makes no model calls for them.
  */
 

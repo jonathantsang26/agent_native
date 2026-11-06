@@ -1,5 +1,5 @@
 /**
- * Key Events (DESIGN.md §6.3) from events.json: one glyph per kind, shared by the side list and
+ * Key Events from events.json: one glyph per kind, shared by the side list and
  * the timeline track. An ignition estimate is listed only when ignition.json says its start
  * time is identifiable; otherwise the list says the time is withheld and why.
  */

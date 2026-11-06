@@ -134,7 +134,7 @@ type RvfcVideo = HTMLVideoElement & {requestVideoFrameCallback?: (cb: VideoFrame
 
 const CYAN = '#4fe3f0';
 
-/** Corner-bracket boxes, the same mark as the recorded player (DESIGN.md §7.1), in frame pixels. */
+/** Corner-bracket boxes, the same mark as the recorded player, in frame pixels. */
 export function drawBoxes(ctx: CanvasRenderingContext2D, dets: Det[], classes: string[], px: number) {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   ctx.strokeStyle = CYAN;

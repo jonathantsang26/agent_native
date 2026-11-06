@@ -1,6 +1,6 @@
 /**
  * All timestamps are stored in UTC and rendered in the incident's time zone with a
- * computed zone label (BUILD.md §8): a January fire shows PST, never a copied "PDT".
+ * computed zone label: a January fire shows PST, never a copied "PDT".
  */
 
 const cache = new Map<string, Intl.DateTimeFormat>();

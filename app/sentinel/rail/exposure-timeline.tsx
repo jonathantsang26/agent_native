@@ -1,5 +1,5 @@
 /**
- * DESIGN.md §9 Analysis → Homes: one structure's exposure over the replay window. The distance to
+ * Analysis → Homes: one structure's exposure over the replay window. The distance to
  * the burned area comes from the CPU copy of arrival.png (the Fire Progression layer, interpolated
  * between mapped perimeters); the gust from the nearest wind_field.json point. Both are computed
  * once per selected structure; only the t cursor and the readout follow the scrubber.

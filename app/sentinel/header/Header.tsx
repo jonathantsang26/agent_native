@@ -6,7 +6,7 @@ import {useTime} from '../state/time';
 import {useUi, type Tab} from '../state/ui';
 import {Icon, Logo} from '../ui/Icon';
 
-/** Drones plays recorded footage with Sentinel boxes and SAM 3.1 masks (DESIGN.md §5.2, §9). Risk replaces the reference's Resources tab. */
+/** Drones plays recorded footage with Sentinel boxes and SAM 3.1 masks; Risk shows post-fire debris flows. */
 const TABS: {id: Tab; label: string; icon: string; unavailable?: string}[] = [
   {id: 'incident', label: 'Incident', icon: 'map'},
   {id: 'drones', label: 'Drones', icon: 'drone'},
@@ -51,7 +51,7 @@ function FirePicker({fire}: {fire: FireData}) {
   );
 }
 
-/** DESIGN.md §3: one 40px row. */
+/** one 40px row. */
 export function Header({fire}: {fire: FireData}) {
   const {tab, setTab} = useUi();
   const {start, end} = useTime();

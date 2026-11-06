@@ -43,7 +43,7 @@ export class Raster {
 }
 
 /**
- * arrival.png's red channel (BUILD.md §3): 1–254 → (code − 1) / 253 of the window, 255 → never
+ * arrival.png's red channel: 1–254 → (code − 1) / 253 of the window, 255 → never
  * burned. Returns epoch ms, or null for never burned / outside.
  */
 export function decodeArrival(code: number | null, windowStart: number, windowEnd: number): number | null {

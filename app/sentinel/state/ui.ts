@@ -5,7 +5,7 @@ export type Tab = MapTab;
 export type ViewMode = '2d' | '3d';
 
 /**
- * DESIGN.md §5.1 layer list, limited to layers this build has data for (no aerial imagery,
+ * layer list, limited to layers this build has data for (no aerial imagery,
  * suppression or administrative boundaries). `ready` is false only if a layer's file is missing.
  */
 export type LayerId = MapLayerId;

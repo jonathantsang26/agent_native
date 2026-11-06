@@ -35,7 +35,7 @@ export type RiskModelDef = {
 };
 
 /**
- * The three likelihood columns of debris_flow.geojson (WORKSTREAMS.md §1, contract v2). USGS's
+ * The three likelihood columns of debris_flow.geojson. USGS's
  * column is the reference, scored by the published-coefficient row; the other two are the
  * on_map rows of model_eval.json. All three rise with rainfall. The MLPs are scored in
  * model_eval.json but not mapped: nothing constrains them to rise with rainfall.

@@ -37,7 +37,7 @@ export function Icon({name, size = 16, className = ''}: {name: keyof typeof PATH
   );
 }
 
-/** Our own mark (not the reference's logo): an ember over a ridge line. */
+/** The app mark: an ember over a ridge line. */
 export function Logo({size = 26}: {size?: number}) {
   return (
     <svg width={size} height={size * 0.75} viewBox="0 0 32 24" aria-hidden>

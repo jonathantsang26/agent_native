@@ -1,5 +1,5 @@
 /**
- * The per-fire files the pipeline writes after steps 01–02 (WORKSTREAMS.md §1, A → B).
+ * The per-fire files the pipeline writes after steps 01–02 (A → B).
  * Each panel loads only what it reads, through one cache, so a missing file degrades that
  * panel alone instead of blocking the app.
  */

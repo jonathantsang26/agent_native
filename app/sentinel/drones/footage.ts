@@ -3,7 +3,7 @@ import {create} from 'zustand';
 import type {FireData} from '../data/fire';
 import {loadFireJson, useFireJson} from '../data/files';
 
-/** C → B footage files (WORKSTREAMS.md §1): web/public/data/<fire>/footage/. */
+/** C → B footage files: web/public/data/<fire>/footage/. */
 export type Clip = {
   id: string;
   title: string;

@@ -81,7 +81,7 @@ export function Stage({fire}: {fire: FireData}) {
     return () => ro.disconnect();
   }, []);
 
-  // 2D/3D toggle eases pitch and bearing like the reference.
+  // 2D/3D toggle eases pitch and bearing.
   useEffect(() => {
     setViewState(v => ({
       ...v,

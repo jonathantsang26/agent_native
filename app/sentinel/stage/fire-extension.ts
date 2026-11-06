@@ -1,5 +1,5 @@
 /**
- * Render path A (BUILD.md §3): the fire lives in the terrain mesh's own fragment shader.
+ * Render path A: the fire lives in the terrain mesh's own fragment shader.
  *
  * Three rasters ride on the base texture's UVs (same bounds, row 0 = north):
  *

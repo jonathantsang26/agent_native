@@ -213,7 +213,7 @@ function ExposureTable({fire}: {fire: FireData}) {
   );
 }
 
-/** DESIGN.md §9 Analysis → Homes. */
+/** Analysis → Homes. */
 export function Homes({fire}: {fire: FireData}) {
   const id = useUi(s => s.selectedStructure);
   const structuresOn = useUi(s => s.layers.structures.visible);

@@ -191,7 +191,7 @@ const SIDE = {
   risk: 'Debris-Flow Models'
 };
 
-/** DESIGN.md §6: 226px dock under the map; side list on the right. */
+/** 226px dock under the map; side list on the right. */
 export function Dock({fire}: {fire: FireData}) {
   const tab = useUi(s => s.tab);
   const {start, end} = useTime();

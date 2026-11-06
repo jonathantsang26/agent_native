@@ -8,7 +8,7 @@ type TimeState = {
   /** Replay window, epoch ms (UTC). */
   start: number;
   end: number;
-  /** The one global time every panel reads (BUILD.md §3). */
+  /** The one global time every panel reads. */
   t: number;
   playing: boolean;
   speed: (typeof SPEEDS)[number];

@@ -1,5 +1,5 @@
 /**
- * Street-name normalization. Mirrors pipeline/steps/s09_vectors.py `normalize_street` exactly,
+ * Street-name normalization. Mirrors the data pipeline's `normalize_street` exactly,
  * because gazetteer.json keys were built with it: 'North Lake Avenue' -> 'n lake ave'.
  */
 const STREET_WORDS: Record<string, string> = {

@@ -33,7 +33,7 @@ export function EstimatedPlace({ig}: {ig: IgnitionFile}) {
 
 /**
  * The one place the estimated start time is rendered. It is shown only when the pipeline says the
- * timing is identifiable (WORKSTREAMS.md §1); otherwise the reasons it was withheld are shown instead.
+ * timing is identifiable; otherwise the reasons it was withheld are shown instead.
  */
 export function EstimatedStart({ig, tz, showWidth = false}: {ig: IgnitionFile; tz: string; showWidth?: boolean}) {
   const {identifiable, reasons, interval90_width_h} = ig.timing;

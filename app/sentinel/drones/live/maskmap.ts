@@ -4,7 +4,7 @@ import type {SamFrame} from './sam';
 
 /**
  * LIVE SAM 3.1 outlines on the map. /api/sam traces each SAM mask into pixel outlines
- * (api/_lib/samcodec.ts traceOutline); here each outline is simplified to at most MAX_VERTS vertices
+ * (server/lib/sam/samcodec.ts traceOutline); here each outline is simplified to at most MAX_VERTS vertices
  * and every vertex is ray-cast through the same camera model as the detector's hits (dronegeo.ts
  * pixelToGround) onto the DEM, giving a ground polygon per mask. Vertices whose rays miss the ground
  * (above the horizon, beyond range) are dropped; a polygon left with fewer than three is skipped.

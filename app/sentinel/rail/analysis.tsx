@@ -108,7 +108,7 @@ function WindTable({fire, ig}: {fire: FireData; ig: IgnitionFile}) {
   );
 }
 
-/** DESIGN.md §9: heatmap legend, the estimate with its credible region, then the hold-out score. */
+/** heatmap legend, the estimate with its credible region, then the hold-out score. */
 function IgnitionSection({fire}: {fire: FireData}) {
   const {data: ig, error} = useFireJson<IgnitionFile>(fire, 'ignition.json');
   const {data: perims} = useFireJson<Perimeters>(fire, 'perimeters.geojson');

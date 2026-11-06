@@ -102,7 +102,7 @@ function EvalCard({fire}: {fire: FireData}) {
             )}
             {s.weights?.training && (
               <li>
-                Fine-tuned on FireNET during the hackathon, from those weights, for {s.weights.training.epochs} epochs (val mAP50{' '}
+                Fine-tuned on FireNET from those weights, for {s.weights.training.epochs} epochs (val mAP50{' '}
                 {s.weights.training.val.map50.toFixed(2)}).
               </li>
             )}

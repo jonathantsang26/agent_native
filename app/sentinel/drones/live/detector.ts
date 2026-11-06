@@ -50,7 +50,7 @@ type MetaFile = {
   metadata_props?: Record<string, string>;
 };
 
-/** sentinel_fire.onnx.json, written by pipeline/tools/export_sentinel_onnx.py; the defaults match it. */
+/** sentinel_fire.onnx.json, written when the model was exported to ONNX; the defaults match it. */
 async function loadMeta(): Promise<ModelMeta> {
   const res = await fetch(META_URL);
   if (!res.ok || !(res.headers.get('content-type') ?? '').includes('json')) return DEFAULT_META;

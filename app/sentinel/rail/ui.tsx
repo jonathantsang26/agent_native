@@ -1,6 +1,6 @@
 import type {ReactNode} from 'react';
 
-/** Card with a title row (DESIGN.md §5). */
+/** Card with a title row. */
 export function Card({title, aside, children}: {title: ReactNode; aside?: ReactNode; children: ReactNode}) {
   return (
     <section className="mx-2 mt-2 overflow-hidden rounded-md bg-se-card shadow-[0_0_0_1px_var(--hairline)]">
@@ -60,7 +60,7 @@ export function SubHead({children, aside}: {children: ReactNode; aside?: ReactNo
   );
 }
 
-/** One cell of a stat grid, like the drone detail grid (DESIGN.md §5.2). */
+/** One cell of a stat grid, like the drone detail grid. */
 export function Stat({label, value, sub, tone}: {label: string; value: ReactNode; sub?: ReactNode; tone?: 'live'}) {
   return (
     <div className="min-w-0">

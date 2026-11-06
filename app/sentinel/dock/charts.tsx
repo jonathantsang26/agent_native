@@ -1,5 +1,5 @@
 /**
- * Incident charts (DESIGN.md §6.2): Fire Area from the arrival raster (the cells the map draws
+ * Incident charts: Fire Area from the arrival raster (the cells the map draws
  * as burned) and Rate of Spread from series.json over the replay window, and the Elevation
  * Profile along the spread spine from profile.json. Paths are built once per data/size; only
  * the past/future clip and the cursor move with t.

@@ -48,7 +48,7 @@ function StationLine({fire, t}: {fire: FireData; t: number}) {
 }
 
 /**
- * DESIGN.md §5.1, driven by the global t and the cursor. Over the terrain, wind and gust are the
+ *, driven by the global t and the cursor. Over the terrain, wind and gust are the
  * HRRR grid (wind_field.json) interpolated at the cursor; otherwise weather.json at the fire-area
  * center. Temp and RH stay center values and fuel moisture and ERC the gridMET day, at any cursor.
  */

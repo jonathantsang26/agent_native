@@ -17,7 +17,7 @@ import {
 
 const CYAN = '#4fe3f0';
 
-/** Corner-bracket target box (DESIGN.md §7.1), the Sentinel box; the SAM mask sits inside it. */
+/** Corner-bracket target box, the Sentinel box; the SAM mask sits inside it. */
 function Brackets({d, scale}: {d: Detection; scale: number}) {
   const [x1, y1, x2, y2] = d.box;
   const l = Math.min(14 / scale, (x2 - x1) / 3, (y2 - y1) / 3);
@@ -37,7 +37,7 @@ function Brackets({d, scale}: {d: Detection; scale: number}) {
   );
 }
 
-/** SAM 3.1 mask: path in raster coordinates, placed by its bounds (WORKSTREAMS.md §1, C → B). */
+/** SAM 3.1 mask: path in raster coordinates, placed by its bounds. */
 function MaskShape({m, scale}: {m: Mask; scale: number}) {
   const [left, top, right, bottom] = m.bounds;
   const [w, h] = m.size;
@@ -108,7 +108,7 @@ function HudFrame() {
 }
 
 /**
- * The drone camera PiP (DESIGN.md §7.1, §9): the clip with Sentinel's boxes and SAM 3.1's masks drawn
+ * The drone camera PiP: the clip with Sentinel's boxes and SAM 3.1's masks drawn
  * in sync with the video. A clip we may not redistribute (FLAME 2) is local-only, so when its video is
  * missing the overlays still play over a dark frame on their own clock.
  */

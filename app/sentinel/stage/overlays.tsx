@@ -28,7 +28,7 @@ export function Compass({onReset}: {onReset: () => void}) {
   );
 }
 
-/** Bottom-right cluster: 2D/3D segmented toggle and fullscreen (DESIGN.md §4.1). */
+/** Bottom-right cluster: 2D/3D segmented toggle and fullscreen. */
 export function MapControls() {
   const {viewMode, setViewMode} = useUi();
   const seg = (mode: '2d' | '3d', label: string) => (
@@ -236,7 +236,7 @@ function arrivalLine(
   return {text: `Burns ${approx} (after t)`, detail, burned: false};
 }
 
-/** Dark tooltip that follows the cursor over terrain (DESIGN.md §4.1). */
+/** Dark tooltip that follows the cursor over terrain. */
 export function HoverInspector({
   dem,
   fire,

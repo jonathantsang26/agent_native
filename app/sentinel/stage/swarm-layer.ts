@@ -1,7 +1,7 @@
 /**
  * The drone-swarm replay on the map: each simulated drone at time t, its last 20 minutes of
  * track, its camera footprint while airborne, and the squads' tasked areas from the latest decision.
- * Positions come from the precomputed rollout (pipeline/sim); nothing here is live.
+ * Positions come from the precomputed rollout; nothing here is live.
  */
 import {useMemo} from 'react';
 import {PathLayer, ScatterplotLayer} from '@deck.gl/layers';
