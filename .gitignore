@@ -44,3 +44,4 @@ data/*.lock
 
 # Generated from node_modules/onnxruntime-web by vite.config.ts
 public/ort/
+.neon

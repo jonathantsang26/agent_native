@@ -93,7 +93,7 @@ Deploy to Vercel from the GitHub repo, so Vercel runs the build itself. The outp
 `vercel.json` sets the install and build commands. `pnpm vercel-build` builds for Vercel and then, when `DATABASE_URL` is set, applies the framework's migrations and the app's own (the briefs table). Serverless functions don't create tables at startup, so the migrations must run here.
 
 1. In Vercel, import the repository as a new project. Leave the framework preset at Other, and set Node.js to 24.x in the project settings.
-2. Add Postgres. Under Storage, add Neon, which sets `DATABASE_URL`; or paste a pooled Neon URL as `DATABASE_URL` yourself.
+2. Add Postgres. This repo is linked to a Neon project through `neon.ts`. Running `npx neon@latest deploy` applies it and writes `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED` (direct) to `.env`; copy both into Vercel. The app reads the pooled URL and runs migrations over the direct one. Alternatively, add Neon under Vercel's Storage tab.
 3. Set the production environment variables:
 
    | Variable | Purpose |
