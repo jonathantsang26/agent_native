@@ -50,7 +50,9 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
 ];
 
-const THEME_INIT_SCRIPT = getThemeInitScript();
+// The map has one (light) palette, so the chat beside it defaults to light too
+// instead of following the OS; the command menu can still switch to dark.
+const THEME_INIT_SCRIPT = getThemeInitScript("light", false);
 const LOCALE_INIT_SCRIPT = getLocaleInitScript();
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -184,6 +186,7 @@ export default function Root() {
     <AppToolkitProvider>
       <AppProviders
         queryClient={queryClient}
+        defaultTheme="light"
         skeletonLayout={skeletonLayoutForPath(pathname)}
         i18n={{ catalog: i18nCatalog }}
       >

@@ -15,7 +15,7 @@ Built on [Agent-Native](https://www.agent-native.com/docs/), Builder.io's framew
 | "Chart the fire's growth" | `fire-growth-chart` renders a chart inside the chat | Native data widgets in chat |
 | "Switch to the Palisades fire" | `navigate {view: "incident", fireId: "palisades"}` | Navigation state |
 | Anything with a number in it | A response guard checks every figure against this turn's action results and sends ungrounded answers back | `finalResponseGuard` |
-| Claude Desktop, Cursor, ChatGPT | The ten fire-data actions are offered over MCP at `/mcp` | MCP server, `connectorCatalog` |
+| Claude Desktop, Cursor, ChatGPT | The ten fire-data actions are listed for external agents on the OAuth-protected MCP server at `/mcp` (connect with `npx @agent-native/core@latest connect <app-url>`; not yet tried from a host) | MCP server, `connectorCatalog` |
 
 The map itself is the original UI: deck.gl terrain, the replay timeline, the right rail (layers, analysis, evidence, swarm replay), the Drones tab with an in-browser fire detector, and the Risk tab for post-fire debris flows.
 

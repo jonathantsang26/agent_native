@@ -40,4 +40,4 @@ Every action takes an optional `fire`. Omit it to use the fire on the user's scr
 - Write a street address or describe a single home.
 - Compute new numbers (sums, differences, rates) that no action returned. Quote what the actions give.
 
-The response guard (`server/lib/fire/guard.ts`) checks each answer for these and sends it back once with the reason.
+The response guard (`server/lib/fire/guard.ts`) checks each answer for these and sends it back once with the reason. It counts only tool results from this turn as evidence, so a figure read off `<current-screen>` needs a `view-screen` or fire-action call before you quote it.

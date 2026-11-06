@@ -43,9 +43,10 @@ export default defineEventHandler(async (event) => {
     userEmail: session.email,
     orgId: session.orgId ?? null,
   }).catch(() => null);
+  // A key saved in the app's credential store wins; otherwise .env's applies.
   const out = await handleSam(
     body,
-    { ...process.env, MODEL_API_KEY: key ?? undefined },
+    { ...process.env, ...(key ? { MODEL_API_KEY: key } : {}) },
     { client: getRequestIP(event, { xForwardedFor: true }) ?? "unknown" },
   );
   for (const [k, v] of Object.entries(out.headers ?? {})) setResponseHeader(event, k, v);
