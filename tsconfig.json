@@ -6,6 +6,7 @@
     // checks would add a guard to nearly every pixel read.
     "noUncheckedIndexedAccess": false,
     "exactOptionalPropertyTypes": false,
+    "resolveJsonModule": true,
     "rootDirs": [
       ".",
       "./.react-router/types"

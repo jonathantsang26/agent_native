@@ -12,9 +12,12 @@ import {
   threadIdFromPath,
 } from "@/lib/chat-paths";
 import { TAB_ID } from "@/lib/tab-id";
+import { DEFAULT_FIRE, firePath, isFireId } from "@shared/fires";
 
 export interface NavigationState {
   view?: string;
+  /** On /fires/<id>: which fire the incident map shows. */
+  fireId?: string;
   path?: string;
   publicPath?: string;
   threadId?: string;
@@ -47,7 +50,9 @@ export function commandPathForNavigation(command: NavigationState): string {
     publicPathSuffixIndex === -1
       ? publicPath
       : publicPath.slice(0, publicPathSuffixIndex);
-  const publicViewPath = appPathFromLocalRoute(pathForView(command?.view));
+  const publicViewPath = appPathFromLocalRoute(
+    pathForView(command?.view, command?.fireId),
+  );
   if (
     matchesPathPrefix(pathname, basePath) &&
     (matchesPathPrefix(pathname, publicViewPath) ||
@@ -64,8 +69,10 @@ function matchesPathPrefix(pathname: string, prefix: string): boolean {
 
 export function navigationStateForPath(pathname: string): NavigationState {
   const threadId = threadIdFromPath(pathname);
+  const fireId = pathname.match(/^\/fires\/([^/]+)/)?.[1];
   return {
     view: viewForPath(pathname),
+    ...(fireId ? { fireId } : {}),
     path: pathname,
     publicPath: appPathFromLocalRoute(pathname),
     ...(threadId ? { threadId } : {}),
@@ -73,6 +80,7 @@ export function navigationStateForPath(pathname: string): NavigationState {
 }
 
 function viewForPath(pathname: string): string {
+  if (pathname.startsWith("/fires/")) return "incident";
   if (isChatPathname(pathname)) return "chat";
   if (pathname === HOME_PATH) return "home";
   if (pathname.startsWith("/database")) return "database";
@@ -86,8 +94,10 @@ function viewForPath(pathname: string): string {
   return "chat";
 }
 
-function pathForView(view?: string): string {
+function pathForView(view?: string, fireId?: string): string {
   switch (view) {
+    case "incident":
+      return firePath(isFireId(fireId) ? fireId : DEFAULT_FIRE);
     case "chat":
     case "ask":
       return NEW_CHAT_PATH;
@@ -111,7 +121,7 @@ function pathForView(view?: string): string {
 }
 
 export function pathForCommand(command: any): string {
-  const path = pathForView(command?.view);
+  const path = pathForView(command?.view, command?.fireId);
   if (command?.view !== "chat" && command?.view !== "ask") return path;
   const threadId =
     typeof command?.threadId === "string" ? command.threadId.trim() : "";

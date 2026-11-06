@@ -2,7 +2,7 @@ import { ClientOnly } from "@agent-native/toolkit/app/shared";
 import { lazy, Suspense } from "react";
 import { useParams } from "react-router";
 
-import { fireTitle } from "@/lib/fires";
+import { fireTitle } from "@shared/fires";
 
 // deck.gl, onnxruntime-web and the stores read `window` at import time, so the
 // whole incident UI loads in the browser only; SSR renders the loading frame.

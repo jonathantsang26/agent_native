@@ -1,26 +1,14 @@
+import {RAIL_TABS, type MapCamera, type MapLayerId, type MapTab, type RailTab} from '@shared/map';
 import {create} from 'zustand';
 
-export type Tab = 'incident' | 'drones' | 'risk';
+export type Tab = MapTab;
 export type ViewMode = '2d' | '3d';
 
 /**
  * DESIGN.md §5.1 layer list, limited to layers this build has data for (no aerial imagery,
  * suppression or administrative boundaries). `ready` is false only if a layer's file is missing.
  */
-export type LayerId =
-  | 'terrain'
-  | 'burnScar'
-  | 'fireSpread'
-  | 'perimeters'
-  | 'ignition'
-  | 'spine'
-  | 'wind'
-  | 'structures'
-  | 'roads'
-  | 'labels'
-  | 'debrisFlow'
-  | 'forecast'
-  | 'liveHits';
+export type LayerId = MapLayerId;
 
 export type LayerDef = {
   id: LayerId;
@@ -67,12 +55,10 @@ export type FlyTo = {lon: number; lat: number; zoom?: number; seq: number} | nul
 /** A place to mark on the map while the pointer is over something that cites it (a citation chip). */
 export type Highlight = {lon: number; lat: number; label?: string} | null;
 
-/** Incident tab sub-panels in the right rail. */
-export const RAIL_TABS = ['Layers', 'Analysis', 'Evidence', 'Swarm'] as const;
-export type RailTab = (typeof RAIL_TABS)[number];
+export {RAIL_TABS, type RailTab};
 
 /** The map camera as the stage last reported it; read by the agent bridge. */
-export type Camera = {lon: number; lat: number; zoom: number; pitch: number; bearing: number};
+export type Camera = MapCamera;
 
 type UiState = {
   tab: Tab;

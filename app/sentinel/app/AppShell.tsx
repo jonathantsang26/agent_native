@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import {AgentMapBridge} from '../agent/bridge';
 import {useFireData} from '../data/fire';
 import {Dock} from '../dock/Dock';
 import {LivePlayer} from '../drones/live/LivePlayer';
@@ -8,7 +9,7 @@ import {Rail} from '../rail/Rail';
 import {Stage} from '../stage/Stage';
 import {startClock} from '../state/time';
 
-/** DESIGN.md §1: header 40 / [stage + dock | rail 308]. */
+/** Header 40 / [stage + dock | rail 308]. */
 export function AppShell() {
   const {data, error} = useFireData();
 
@@ -30,6 +31,7 @@ export function AppShell() {
 
   return (
     <div className="flex h-full flex-col">
+      <AgentMapBridge fire={data} />
       <Header fire={data} />
       <div className="flex min-h-0 flex-1">
         <div className="flex min-w-0 flex-1 flex-col">
